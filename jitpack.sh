@@ -30,7 +30,7 @@ pushd $INSTALL_DIR
 popd
 
 mvn install:install-file \
-  -Dfile=_source/$SOURCE_DIR/$SORA_FILENAME \
+  -Dfile=$SOURCE_DIR/$SORA_FILENAME \
   -Dversion=${SORA_VERSION} \
   -Dpackaging=zip
   -DgroupId=com.github.melpon \
