@@ -1,4 +1,4 @@
 before_install:
-   - python3 jitpack.py
+   - ./jitpack.sh
 install:
    - true
