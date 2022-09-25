@@ -30,4 +30,7 @@ pushd $INSTALL_DIR
 popd
 
 mvn install:install-file \
-  _install/windows_x86_64/sora/lib/sora.lib
+  -Dfile=_install/windows_x86_64/sora/lib/sora.lib \
+  -Dversion=${SORA_VERSION} \
+  -DgroupId=com.github.melpon \
+  -DartifactId=android
