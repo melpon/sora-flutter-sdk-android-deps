@@ -32,6 +32,6 @@ popd
 mvn install:install-file \
   -Dfile=$SOURCE_DIR/$SORA_FILENAME \
   -Dversion=${SORA_VERSION} \
-  -Dpackaging=zip
+  -Dpackaging=zip \
   -DgroupId=com.github.melpon \
   -DartifactId=android
