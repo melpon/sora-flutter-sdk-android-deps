@@ -2,4 +2,3 @@ before_install:
    - python3 jitpack.py
 install:
    - true
-env:
