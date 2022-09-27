@@ -2,17 +2,18 @@
 
 set -ex
 
-PROJECT_DIR=$(cd `dirname $0` && pwd)
+cd `dirname $0`
+PROJECT_DIR=`pwd`
 SOURCE_DIR=$PROJECT_DIR/_source
-INSTALL_DIR=$PROJECT_DIR/_install/windows_x86_64
+INSTALL_DIR=$PROJECT_DIR/_install/android
 rm -rf $SOURCE_DIR
 rm -rf $INSTALL_DIR
 mkdir -p $SOURCE_DIR
 mkdir -p $INSTALL_DIR
 
 SORA_VERSION=2022.12.1
-PLATFORM=windows_x86_64
-EXT=zip
+PLATFORM=android
+EXT=tar.gz
 
 SORA_FILENAME=sora-cpp-sdk-${SORA_VERSION}_${PLATFORM}.${EXT}
 SORA_URL=https://github.com/shiguredo/sora-cpp-sdk/releases/download/$SORA_VERSION/$SORA_FILENAME
@@ -29,9 +30,15 @@ pushd $INSTALL_DIR
   fi
 popd
 
+rm -rf prefab/modules/sora/include
+cp -r $INSTALL_DIR/sora/include prefab/modules/sora/include
+cp $INSTALL_DIR/sora/lib/libsora.a prefab/modules/sora/libs/android.arm64-v8a/
+
+zip -r sora-flutter-sdk-android-deps.aar prefab/
+
 mvn install:install-file \
-  -Dfile=$SOURCE_DIR/$SORA_FILENAME \
+  -Dfile=sora-flutter-sdk-android-deps.aar \
   -Dversion=${SORA_VERSION} \
-  -Dpackaging=zip \
+  -Dpackaging=aar \
   -DgroupId=com.github.melpon \
   -DartifactId=android

@@ -1,0 +1,5 @@
+{
+  "android": {
+    "export_libraries": ["-llog", "-landroid", "-lopensles", "-legl"]
+  }
+}
